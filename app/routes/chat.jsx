@@ -7,7 +7,7 @@ import MCPClient from "../mcp-client";
 import { saveMessage, getConversationHistory, storeCustomerAccountUrl, getCustomerAccountUrl } from "../db.server";
 import AppConfig from "../services/config.server";
 import { createSseStream } from "../services/streaming.server";
-import { createClaudeService } from "../services/claude.server";
+import { createLlmService } from "../services/llm.server";
 import { createToolService } from "../services/tool.server";
 import { unauthenticated } from "../shopify.server";
 
@@ -127,13 +127,13 @@ async function handleChatSession({
   promptType,
   stream
 }) {
-  // Initialize services
-  const claudeService = createClaudeService();
-  const toolService = createToolService();
-
   // Initialize MCP client
   const shopId = request.headers.get("X-Shopify-Shop-Id");
   const shopDomain = request.headers.get("Origin");
+
+  // Initialize services
+  const llmService = await createLlmService(shopDomain);
+  const toolService = createToolService();
   const customerMcpEndpoint = await getCustomerMcpEndpoint(shopDomain, conversationId);
   const mcpClient = new MCPClient(
     shopDomain,
@@ -187,7 +187,7 @@ async function handleChatSession({
     let finalMessage = { role: 'user', content: userMessage };
 
     while (finalMessage.stop_reason !== "end_turn") {
-      finalMessage = await claudeService.streamConversation(
+      finalMessage = await llmService.streamConversation(
         {
           messages: conversationHistory,
           promptType,
