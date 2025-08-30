@@ -1,66 +1,111 @@
-# Build an AI Agent for Your Storefront
+# SaiKou Shopify AI Chat Agent Assistant
 
-A Shopify template app that lets you embed an AI-powered chat widget on your storefront. Shoppers can search for products, ask about policies or shipping, and complete purchases - all without leaving the conversation. Under the hood it speaks the [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) to tap into Shopify’s APIs.
+**Empower your Shopify storefront with a cutting-edge, multi-LLM AI chat assistant.**
 
-### Overview
-- **What it is**: A chat widget + backend that turns any storefront into an AI shopping assistant.
-- **Key features**:
-  - Natural-language product discovery
-  - Store policy & FAQ lookup
-  - Create carts, add or remove items, and initiate checkout
-  - Track orders and initiate returns
+---
 
-## Developer Docs
-- Everything from installation to deep dives lives on https://shopify.dev/docs/apps/build/storefront-mcp.
-- Clone this repo and follow the instructions on the dev docs.
+## 🌟 Vision
 
-## Examples
-- `hi` > will return a LLM based response. Note that you can customize the LLM call with your own prompt.
-- `can you search for snowboards` > will use the `search_shop_catalog` MCP tool.
-- `add The Videographer Snowboard to my cart` > will use the `update_cart` MCP tool and offer a checkout URL.
-- `update my cart to make that 2 items please` > will use the `update_cart` MCP tool.
-- `can you tell me what is in my cart` > will use the `get_cart` MCP tool.
-- `what languages is your store available in?` > will use the `search_shop_policies_and_faqs` MCP tool.
-- `I'd like to checkout` > will call checkout from one of the above MCP cart tools.
-- `Show me my recent orders` > will use the `get_most_recent_order_status` MCP tool.
-- `Can you give me more details about order Id 1` > will use the `get_order_status` MCP tool.
+We aim to build the most powerful, flexible, and open AI agent for any Shopify business.  
+Our assistant lets you choose between leading LLM providers—like OpenAI, Google Gemini, Anthropic Claude, and more—so you always have the smartest AI for your needs.  
+Join us as we shape the future of commerce automation, personalization, and customer support!
 
-## Architecture
+---
 
-### Components
-This app consists of two main components:
+## 🚀 Key Features
 
-1. **Backend**: A Remix app server that handles communication with Claude, processes chat messages, and acts as an MCP Client.
-2. **Chat UI**: A Shopify theme extension that provides the customer-facing chat interface.
+- **Multi-LLM Support:**  
+  Effortlessly switch between OpenAI, Google Gemini, Anthropic Claude, and other models.
+- **Native Shopify Integration:**  
+  Seamlessly embed the chat widget into any storefront, leveraging Shopify’s MCP tools for product search, cart updates, order tracking, FAQs, and more.
+- **Customizable UI & Prompts:**  
+  Tailor the chat experience and agent personality to match your brand and audience.
+- **Extensible & Open Source:**  
+  Fork, contribute, or integrate with other tools and APIs—your business, your rules.
+- **Fast Setup:**  
+  Get started in minutes with clear docs and developer support.
 
-When you start the app, it will:
-- Start Remix in development mode.
-- Tunnel your local server so Shopify can reach it.
-- Provide a preview URL to install the app on your development store.
+---
 
-For direct testing, point your test suite at the `/chat` endpoint (GET or POST for streaming).
+## 🛠 Getting Started
 
-### MCP Tools Integration
-- The backend already initializes all Shopify MCP tools—see [`app/mcp-client.js`](./app/mcp-client.js).
-- These tools let your LLM invoke product search, cart actions, order lookups, etc.
-- More in our [dev docs](https://shopify.dev/docs/apps/build/storefront-mcp).
+1. **Clone the repo:**
+   ```bash
+   git clone https://github.com/SaikoGenerator/SaiKou-Shopify-AI-Chat-Agent-Assistant---multiple-AI-model-providers-Google-Gemini-OpenAI...-API.git
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Configure your preferred LLM provider:**  
+   See [docs/LLM-setup.md](docs/LLM-setup.md) for instructions.
+4. **Run locally:**
+   ```bash
+   npm run dev
+   ```
 
-### Tech Stack
-- **Framework**: [Remix](https://remix.run/)
-- **AI**: [Claude by Anthropic](https://www.anthropic.com/claude)
-- **Shopify Integration**: [@shopify/shopify-app-remix](https://www.npmjs.com/package/@shopify/shopify-app-remix)
-- **Database**: SQLite (via Prisma) for session storage
+For full instructions, see [docs/Getting-Started.md](docs/Getting-Started.md).
 
-## Customizations
-This repo can be customized. You can:
-- Edit the prompt
-- Change the chat widget UI
-- Swap out the LLM
+---
 
-You can learn how from our [dev docs](https://shopify.dev/docs/apps/build/storefront-mcp).
+## 💡 Example Interactions
 
-## Deployment
-Follow standard Shopify app deployment procedures as outlined in the [Shopify documentation](https://shopify.dev/docs/apps/deployment/web).
+- `hi` → AI responds using your selected LLM.
+- `search for snowboards` → Uses Shopify’s MCP tool to show relevant products.
+- `add The Videographer Snowboard to my cart` → Updates cart and shares checkout link.
+- `what’s in my cart?` → Displays cart contents.
+- `show my recent orders` → Retrieves recent order status.
+- `tell me store languages` → Checks policies/FAQs.
 
-## Contributing
-We appreciate your interest in contributing to this project. As this is an example repository intended for educational and reference purposes, we are not accepting contributions.
+---
+
+## 🧩 Architecture
+
+- **Backend:**  
+  Remix server handling LLM communication, chat logic, and Shopify MCP integrations.
+- **Frontend:**  
+  Shopify theme extension providing the customer-facing chat interface.
+- **LLM Integration:**  
+  Easily switch between supported providers via config.
+
+---
+
+## ✨ Customization
+
+- Change prompts, agent personality, and chat UI.
+- Add new LLMs or connect with other APIs.
+- Configure Shopify MCP tools for unique workflows.
+
+---
+
+## 📈 Roadmap
+
+- Add more LLM providers (Mistral, Cohere, etc.)
+- Advanced analytics & reporting
+- Multi-language support
+- Plugin ecosystem
+- Custom agent personalities
+- Deep Shopify API integrations
+
+Contribute your ideas! See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## 🤝 Community & Support
+
+- [GitHub Discussions](https://github.com/SaikoGenerator/SaiKou-Shopify-AI-Chat-Agent-Assistant---multiple-AI-model-providers-Google-Gemini-OpenAI...-API/discussions)
+- Discord: Coming soon!
+- Twitter: [@SaikoGenerator](https://twitter.com/SaikoGenerator)
+
+---
+
+## 🏆 Credits
+
+- Inspired by [Shopify/shop-chat-agent](https://github.com/Shopify/shop-chat-agent)
+- Maintained by [SaikoGenerator](https://github.com/SaikoGenerator) and contributors
+
+---
+
+## 📄 License
+
+MIT – Free to use, modify, and distribute.
